@@ -1,0 +1,23 @@
+.mainContainer{
+    padding: 20px;
+    height: 100%;
+}
+
+.MuiDataGrid-cell {
+    font-size: 10px;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderWrapper {
+    font-size: 10px;
+}
+
+.MuiIconButton-label {
+    font-size: 10px;
+}
+.fullHeight{
+    height: 100%;
+}
+
+.halfHeight{
+    height: 50%;
+}

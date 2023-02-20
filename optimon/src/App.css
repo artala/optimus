@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+}
+
+.mainClass {
+  padding-top: 20px;
+}
+
+.dark {
+  background-color: #353535;
+  color: #fff;
+}
+
+.light {
+  background-color: #fff;
+  color: #000000;
+}
+
+.blackBackground {
+  background-color: black;
+}
+
+.lightBlueBackground {
+  background-color: #2f78c5;
+}
+
+.darkBlueBackground {
+  background-color: #3500ad;
+}
+
+.buttonStyle {
+  background: none;
+  border: none;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.navigation {
+  height: 10%;
+  padding: 0px 30px;
+}
+
+.navigationText{
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0px;
+}
+
+.optimonLogo{
+  height: 75px;
+}
+
+.navigationSection{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: -webkit-fill-available;
+}
+.fullHeightVh{
+  height: 100vh;
+}
+.autoHeight{
+  height: 90%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.darkHeaderClass{
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.darkCell {
+  color: white;
+}
+
+.lightHeaderClass{
+  background-color: #2f78c5;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
