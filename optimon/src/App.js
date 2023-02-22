@@ -1,7 +1,7 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
 import Dashboard from './components/Dashboard';
@@ -37,9 +37,10 @@ function App() {
             </button>
           </nav>
           <div className="autoHeight">
-            <Switch>
-              <Route exact path={["/", "/endpoints"]} component={Dashboard} />
-            </Switch>
+            <Routes>
+              <Route exact path="/endpoints" element={<Dashboard/>} />
+              <Route exact path="/" element={<Dashboard/>} />
+            </Routes>
           </div>
         </div>
       </ThemeContext.Provider>
