@@ -3,7 +3,7 @@
 }
 
 .mainClass {
-  padding-top: 20px;
+  padding-top: 0px;
 }
 
 .dark {
@@ -13,7 +13,25 @@
 
 .light {
   background-color: #fff;
-  color: #000000;
+  color: black;
+}
+
+.headerImage{
+  height: 50px;
+  /* mix-blend-mode: multiply; */
+}
+
+.headerLink {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.titleHeader {
+  font-weight: bold;
+  font-size: 18px;
+  margin: auto;
+  letter-spacing: 0.02rem;
 }
 
 .blackBackground {
@@ -21,7 +39,7 @@
 }
 
 .lightBlueBackground {
-  background-color: #2f78c5;
+  background-color: #aa9958;
 }
 
 .darkBlueBackground {
@@ -31,6 +49,7 @@
 .buttonStyle {
   background: none;
   border: none;
+  margin: -16px;
 }
 
 .App-logo {
@@ -107,8 +126,8 @@
 }
 
 .lightHeaderClass{
-  background-color: #2f78c5;
-  color: white;
+  background-color: #aa9958;
+  color: black;
   font-size: 15px;
   font-weight: bold;
 }

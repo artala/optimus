@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useContext, useState, useEffect } from "react";
 import {Container,Row , Col} from 'react-bootstrap';
 import EndpointService from "../services/endpointService";
 import './Dashboard.css';
@@ -8,8 +8,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Popper from '@mui/material/Popper';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import { ThemeContext } from "../themeContext";
 
-const Dashboard = () => {
+import { MaterialUISwitch } from '../components/MaterialUISwitch';
+
+const Dashboard = (props) => {
 
   const [trustOneData, setTrustOneData] = useState();
   const [trustTwoData, setTrustTwoData] = useState();
@@ -17,6 +26,12 @@ const Dashboard = () => {
   const [loadingTrust, setLoadingTrust] = useState(false);
   const [refreshTime, setRefreshTime] = useState(10);
   const [time, setTime] = useState(Date.now());
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState();
 
   useEffect(() => {
     refreshAllData()
@@ -39,6 +54,12 @@ const Dashboard = () => {
     });
   }
 
+  const handleClick = (newPlacement) => (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((prev) => placement !== newPlacement || !prev);
+    setPlacement(newPlacement);
+  };
+
   const retrieveTrustData = (id, setState) => {
 
     EndpointService.getTrustData(id)
@@ -60,24 +81,12 @@ const Dashboard = () => {
   };
   
   return (
-    <div className="mainContainer">
+    <div className="mainDashbaordContainer">
       <Container fluid className="fullHeight">
-      <div style= {{position : "absolute", right: '10px', width:'150px'}}>
-        <TextField 
-          label="Refresh Time(Secs)" 
-          color="info" 
-          fullWidth
-          focused 
-          size="small"
-          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-          value={refreshTime}
-          onChange={(event) => {
-            if(!isNaN(event.target.value))
-            {
-              setRefreshTime(event.target.value);
-            }
-          }}
-        />
+      <div style={{position:"absolute", right:"10px"}}>
+        <IconButton onClick={handleClick('bottom-end')}>
+          <SettingsIcon color="info"/>
+        </IconButton>
       </div>
       { <Modal
             open={loadingTrust}
@@ -127,6 +136,39 @@ const Dashboard = () => {
           </Col>
         </Row>
       </Container> 
+
+      <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
+            <Paper elevation={24}>
+              <Typography sx={{ p: 2 }}>
+                <div className="settingsHeaderContainer"><div>Settings</div>
+                <button className='buttonStyle' onClick={toggleTheme}>
+                  <MaterialUISwitch sx={{ m: 2 }} defaultChecked={ theme === 'dark'} />
+                </button>
+                </div>
+                
+                <div>
+                  <TextField 
+                    label="Refresh Time(Secs)" 
+                    fullWidth
+             
+                    size="small"
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    value={refreshTime}
+                    onChange={(event) => {
+                      if(!isNaN(event.target.value))
+                      {
+                        setRefreshTime(event.target.value);
+                      }
+                    }}
+                  />
+                </div>
+              </Typography>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     </div>
   );
 };

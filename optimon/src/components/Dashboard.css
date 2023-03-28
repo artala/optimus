@@ -1,5 +1,5 @@
-.mainContainer{
-    padding: 20px;
+.mainDashbaordContainer{
+    padding: 0px;
     height: 100%;
 }
 
@@ -20,4 +20,20 @@
 
 .halfHeight{
     height: 50%;
+}
+
+.settingsHeaderContainer {
+    padding-bottom: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settingsButton {
+    position: absolute;
+    right: 10px;
+    margin-bottom: 10px;
 }
