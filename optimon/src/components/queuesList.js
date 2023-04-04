@@ -27,6 +27,9 @@ const columns = [
       <div style={{ flexGrow: 1 }}>
         <DataGrid
           rows={props.data}
+          getRowClassName={(params) => {
+            return Number(params.row.queue_pndng_count) > Number(props.limit) ? "highlight" : "";
+          }}
           getRowId={(row) =>  row.queue_name}
           columns={columns}
           rowHeight={30}

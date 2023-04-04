@@ -16,3 +16,11 @@
 .MuiDataGrid-footerContainer{
     height: 30px;
 }
+
+.MuiDataGrid-cell{
+    font-size: 11.5px;
+}
+
+.highlight {
+    color: red;
+}

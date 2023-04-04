@@ -27,6 +27,9 @@ const columns = [
         <DataGrid
           rows={props.data}
           getRowId={(row) =>  row.service_name}
+          getRowClassName={(params) => {
+            return Number(params.row.service_delay_time.split(' ')[0]) > Number(props.limit) ? "highlight" : "";
+          }}
           columns={columns}
           rowHeight={30}
           headerHeight={30}

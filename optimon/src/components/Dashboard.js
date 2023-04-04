@@ -25,6 +25,8 @@ const Dashboard = (props) => {
   const [trustThreeData, setTrustThreeData] = useState();
   const [loadingTrust, setLoadingTrust] = useState(false);
   const [refreshTime, setRefreshTime] = useState(10);
+  const [queueWarningLimit, setQueueWarningLimit] = useState(100);
+  const [serviceDelayTimeLimit, setServiceDelayTimeLimit] = useState(100);
   const [time, setTime] = useState(Date.now());
 
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -103,11 +105,11 @@ const Dashboard = (props) => {
               <div style={{display: "flex", justifyContent: 'space-between', alignItems: 'center'}} >
                 <p><strong>Queues ({new Date(time).toLocaleString()} )</strong></p>
                 </div>
-              {trustOneData?.queue_details && <QueuesList data={trustOneData.queue_details}/>}
+              {trustOneData?.queue_details && <QueuesList data={trustOneData.queue_details} limit={queueWarningLimit} />}
             </Row>
             <Row className="halfHeight">
               <p><strong>Inbound Services ({new Date(time).toLocaleString()} )</strong></p>
-              {trustOneData?.inbound_services && <InboundServiceList data={trustOneData.inbound_services}/>}
+              {trustOneData?.inbound_services && <InboundServiceList data={trustOneData.inbound_services} limit={serviceDelayTimeLimit}/>}
             </Row>
           </Col>
 
@@ -115,11 +117,11 @@ const Dashboard = (props) => {
           <Col>
             <Row className="halfHeight">
               <p><strong>Queues ({new Date(time).toLocaleString()} )</strong></p>
-              {trustTwoData?.queue_details && <QueuesList data={trustTwoData.queue_details}/>}
+              {trustTwoData?.queue_details && <QueuesList data={trustTwoData.queue_details} limit={queueWarningLimit}/>}
             </Row>
             <Row className="halfHeight">
               <p><strong>Inbound Services ({new Date(time).toLocaleString()} )</strong></p>
-              {trustTwoData?.inbound_services && <InboundServiceList data={trustTwoData.inbound_services}/>}
+              {trustTwoData?.inbound_services && <InboundServiceList data={trustTwoData.inbound_services} limit={serviceDelayTimeLimit}/>}
             </Row>
           </Col>
 
@@ -127,11 +129,11 @@ const Dashboard = (props) => {
           <Col>
             <Row className="halfHeight">
               <p><strong>Queues ({new Date(time).toLocaleString()} )</strong></p>
-              {trustThreeData?.queue_details && <QueuesList data={trustThreeData.queue_details}/>}
+              {trustThreeData?.queue_details && <QueuesList data={trustThreeData.queue_details} limit={queueWarningLimit}/>}
             </Row>
             <Row className="halfHeight">
               <p><strong>Inbound Services ({new Date(time).toLocaleString()} )</strong></p>
-              {trustThreeData?.inbound_services && <InboundServiceList data={trustThreeData.inbound_services}/>}
+              {trustThreeData?.inbound_services && <InboundServiceList data={trustThreeData.inbound_services} limit={serviceDelayTimeLimit}/>}
             </Row>
           </Col>
         </Row>
@@ -160,6 +162,38 @@ const Dashboard = (props) => {
                       if(!isNaN(event.target.value))
                       {
                         setRefreshTime(event.target.value);
+                      }
+                    }}
+                  />
+                </div>
+
+                <div className="mt-3">
+                  <TextField 
+                    label="Queue Count Warning Limit" 
+                    fullWidth
+                    size="small"
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    value={queueWarningLimit}
+                    onChange={(event) => {
+                      if(!isNaN(event.target.value))
+                      {
+                        setQueueWarningLimit(event.target.value);
+                      }
+                    }}
+                  />
+                </div>
+
+                <div className="mt-3">
+                  <TextField 
+                    label="Service Delay Time Limit (Mins)" 
+                    fullWidth
+                    size="small"
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    value={serviceDelayTimeLimit}
+                    onChange={(event) => {
+                      if(!isNaN(event.target.value))
+                      {
+                        setServiceDelayTimeLimit(event.target.value);
                       }
                     }}
                   />
